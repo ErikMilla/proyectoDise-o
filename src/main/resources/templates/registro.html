@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,22 +20,60 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         .form-control:focus { box-shadow: none; border-bottom: 2px solid #399fad; }
         .register-link { color: #399fad; text-decoration: underline; }
         .register-link:hover { color: #2e8c99; }
+        .invalid-feedback {
+        display: block;
+        text-transform: capitalize;
+        font-size: 0.9rem;
+    }
     </style>
 </head>
 <body>
     <div class="container" style="padding-bottom: 80px;">
         <div class="register-card mx-auto" style="max-width: 400px;">
             <h2 class="text-center mb-4">Registrarse</h2>
+
+            <!-- Mensaje de éxito o error -->
+            <div th:if="${mensajeExito}" class="text-success text-center mb-3" th:text="${#strings.capitalize(mensajeExito)}"></div>
+            <div th:if="${mensajeError}" class="text-danger text-center mb-3" th:text="${#strings.capitalize(mensajeError)}"></div>
+
             <form method="post" th:object="${registroDto}" class="needs-validation" novalidate>
-                <input class="form-control" th:field="*{nombre}" placeholder="Nombre" required>
-                <input class="form-control" th:field="*{apellidos}" placeholder="Apellidos" required>
-                <input class="form-control" th:field="*{email}" type="email" placeholder="Correo electrónico" required>
-                <input class="form-control" th:field="*{telefono}" type="tel" placeholder="Teléfono" required>
-                <input class="form-control" th:field="*{direccion}" placeholder="Dirección" required>
-                <input class="form-control" type="password" th:field="*{contraseña}" placeholder="Contraseña" required>
-                <input class="form-control" type="password" th:field="*{confircontraseña}" placeholder="Confirmar contraseña" required>
-                <button type="submit" class="main-btn">Registrarse</button>
-            </form>
+    <div class="mb-3">
+        <input class="form-control" th:field="*{nombre}" placeholder="Nombre" required>
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+    </div>
+
+    <div class="mb-3">
+        <input class="form-control" th:field="*{apellidos}" placeholder="Apellidos" required>
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></div>
+    </div>
+
+    <div class="mb-3">
+        <input class="form-control" th:field="*{email}" type="email" placeholder="Correo electrónico" required>
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+    </div>
+
+    <div class="mb-3">
+        <input class="form-control" th:field="*{telefono}" type="tel" placeholder="Teléfono" required>
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
+    </div>
+
+    <div class="mb-3">
+        <input class="form-control" th:field="*{direccion}" placeholder="Dirección" required>
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></div>
+    </div>
+
+    <div class="mb-3">
+        <input class="form-control" type="password" th:field="*{contraseña}" placeholder="Contraseña" required>
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('contraseña')}" th:errors="*{contraseña}"></div>
+    </div>
+
+    <div class="mb-3">
+        <input class="form-control" type="password" th:field="*{confircontraseña}" placeholder="Confirmar contraseña" required>
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('confircontraseña')}" th:errors="*{confircontraseña}"></div>
+    </div>
+
+    <button type="submit" class="main-btn">Registrarse</button>
+</form>
             <div class="text-center mt-3">
                 <span>¿Ya tienes una cuenta? <a href="/login" class="register-link">Inicia sesión</a></span>
             </div>
