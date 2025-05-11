@@ -1,0 +1,89 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f1f9fb;
+}
+
+.container {
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    margin-top: 10px;
+}
+
+.card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.time-range {
+    color: #007baf;
+}
+
+.chart-placeholder img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.status {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.start-btn {
+    background-color: #399fad;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.start-btn:hover {
+    background-color: #2e8792;
+}
+
+.status-msg {
+    margin-top: 10px;
+    color: green;
+    font-weight: bold;
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #e9f5f8;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-nav button {
+    background: none;
+    border: none;
+    font-size: 14px;
+    color: #007baf;
+    cursor: pointer;
+}
+
+.bottom-nav button:hover {
+    text-decoration: underline;
+}
