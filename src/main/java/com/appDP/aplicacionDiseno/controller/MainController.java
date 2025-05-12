@@ -25,14 +25,4 @@ public class MainController {
         }
         return "index";
     }
-
-    @GetMapping("/medicion")
-    public String medicion(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null && auth.isAuthenticated() && !auth.getName().equals("anonymousUser")) {
-            AppUser user = appUserService.obtenerUsuarioPorEmail(auth.getName());
-            model.addAttribute("nombreUsuario", user.getNombre());
-        }
-        return "medicion";
-    }
 }
