@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.4.5</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/> 
 	</parent>
 	<groupId>com.appDP</groupId>
 	<artifactId>aplicacionDiseno</artifactId>
@@ -65,7 +65,8 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<version>1.18.36</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -78,10 +79,8 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.guicedee.services</groupId>
-			<artifactId>jakarta.validation-api</artifactId>
-			<version>1.2.2.1-jre17</version>
-			<type>jar</type>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 	</dependencies>
 
