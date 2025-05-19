@@ -150,8 +150,8 @@
         <a href="/" class="active"><i class="bi bi-house-door"></i><span>Inicio</span></a>
 
         <!-- Si no está autenticado -->
-        <a th:if="${nombreUsuario == null}" href="/login"><i class="bi bi-box-arrow-in-right"></i><span>Login</span></a>
-        <a th:if="${nombreUsuario == null}" href="/registro"><i class="bi bi-person-plus"></i><span>Registro</span></a>
+        <a th:if="${nombreUsuario == null}" href="/login"><i class="bi bi-box-arrow-in-right"></i><span>Iniciar Sesión</span></a>
+        <a th:if="${nombreUsuario == null}" href="/registro"><i class="bi bi-person-plus"></i><span>Registrarse</span></a>
 
         <!-- Si está autenticado -->
         <a th:if="${nombreUsuario != null}" href="/medicion"><i class="bi bi-heart-pulse"></i><span>Salud</span></a>
