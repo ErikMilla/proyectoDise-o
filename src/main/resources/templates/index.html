@@ -155,6 +155,7 @@
 
         <!-- Si está autenticado -->
         <a th:if="${nombreUsuario != null}" href="/medicion"><i class="bi bi-heart-pulse"></i><span>Salud</span></a>
+        <a th:if="${nombreUsuario != null}" href="/alertas"><i class="bi bi-exclamation-triangle"></i><span>Alertas</span></a>
         <a th:if="${nombreUsuario != null}" href="/logout"><i class="bi bi-box-arrow-right"></i><span>Salir</span></a>
 
         <a href="/ajustes"><i class="bi bi-gear"></i><span>Ajustes</span></a>
@@ -204,7 +205,7 @@
         // Glucosa (último valor)
         if (valoresGlucosa.length > 0) {
             const ultimaGlucosa = valoresGlucosa[valoresGlucosa.length - 1];
-            mostrarMensaje("glucosaMensaje", ultimaGlucosa, { min: 70, max: 99 },
+            mostrarMensaje("glucosaMensaje", ultimaGlucosa, { min: 70, max: 140 },
                 "Tu nivel de glucosa es saludable ✅",
                 "Atención: tus niveles de glucosa están fuera del rango recomendado ⚠️");
         }
@@ -221,7 +222,7 @@
         if (valoresPeso.length > 0) {
             const ultimoPeso = valoresPeso[valoresPeso.length - 1];
             // Aquí puedes ajustar el rango según altura o un rango genérico
-            mostrarMensaje("pesoMensaje", ultimoPeso, { min: 50, max: 90 },
+            mostrarMensaje("pesoMensaje", ultimoPeso, { min: 50, max: 75 },
                 "Tu peso está dentro del rango saludable ✅",
                 "Atención: tu peso está fuera del rango saludable ⚠️");
         }

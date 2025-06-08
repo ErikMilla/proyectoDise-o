@@ -63,6 +63,11 @@
     </div>
 
     <div class="mb-3">
+        <input class="form-control" th:field="*{contactoEmergencia}" placeholder="Contacto de Emergencia" required>
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('contactoEmergencia')}" th:errors="*{contactoEmergencia}"></div>
+    </div>
+
+    <div class="mb-3">
         <input class="form-control" type="password" th:field="*{contraseña}" placeholder="Contraseña" required>
         <div class="invalid-feedback" th:if="${#fields.hasErrors('contraseña')}" th:errors="*{contraseña}"></div>
     </div>

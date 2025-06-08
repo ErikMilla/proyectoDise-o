@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alertas Médicas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f7fafb;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 30px;
+            margin-bottom: 80px;
+        }
+
+        .table thead th {
+            background-color: #2e8c99;
+            color: white;
+        }
+
+        .alerta-row {
+            background-color: #fff3cd;
+        }
+
+        .section-title {
+            color: #2e8c99;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .navbar-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            background: #f7fafb;
+            border-top: 1px solid #e0e7ef;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 64px;
+            z-index: 1000;
+        }
+
+        .navbar-bottom a {
+            color: #399fad;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .navbar-bottom a.active,
+        .navbar-bottom a:focus {
+            color: #2e8c99;
+        }
+
+        .navbar-bottom i {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="text-center section-title">Historial de Alertas</h2>
+
+        <div th:if="${alertas != null && !alertas.isEmpty()}">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Tipo de Alerta</th>
+                            <th>Contacto Notificado</th>
+                            <th>Valor Detectado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="alerta : ${alertas}" class="alerta-row">
+                            <td th:text="${alerta['fechaHora']}">07/06/2025 12:00</td>
+                            <td th:text="${alerta['tipoAlerta']}">Glucosa alta</td>
+                            <td th:text="${alerta['contactoNotificado']}">999999999</td>
+                            <td
+                                th:text="${alerta.tipoAlerta == 'Glucosa alta' ? alerta.valorDetectado + ' mg/dL' : alerta.valorDetectado + ' bpm'}">
+                                145 mg/dL
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div th:if="${alertas == null || alertas.isEmpty()}" class="alert alert-info text-center">
+            No se han registrado alertas médicas.
+        </div>
+    </div>
+
+    <nav class="navbar-bottom">
+        <a href="/"><i class="bi bi-house-door"></i><span>Inicio</span></a>
+        <a href="/medicion"><i class="bi bi-heart-pulse"></i><span>Salud</span></a>
+        <a href="/alertas"><i class="bi bi-exclamation-triangle"></i><span>Alertas</span></a>
+        <a href="/logout"><i class="bi bi-box-arrow-right"></i><span>Salir</span></a>
+        <a href="/ajustes"><i class="bi bi-gear"></i><span>Ajustes</span></a>
+    </nav>
+</body>
+
+</html>
