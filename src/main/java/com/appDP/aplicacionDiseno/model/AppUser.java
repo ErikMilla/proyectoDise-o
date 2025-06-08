@@ -23,6 +23,9 @@ public class AppUser {
 
     private String telefono;
     private String direccion;
+    
+    @Column(name = "contacto_emergencia")
+    private String contactoEmergencia;
 
     @Column(nullable = false)
     private String contraseña;

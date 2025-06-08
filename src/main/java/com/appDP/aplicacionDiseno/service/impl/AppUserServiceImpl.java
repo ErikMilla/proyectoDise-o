@@ -26,6 +26,7 @@ public class AppUserServiceImpl implements AppUserService {
         usuario.setEmail(dto.getEmail());
         usuario.setTelefono(dto.getTelefono());
         usuario.setDireccion(dto.getDireccion());
+        usuario.setContactoEmergencia(dto.getContactoEmergencia());
         usuario.setContraseña(encoder.encode(dto.getContraseña()));
         return repo.save(usuario);
     }
