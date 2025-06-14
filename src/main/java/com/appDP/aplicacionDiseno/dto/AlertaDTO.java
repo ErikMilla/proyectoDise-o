@@ -12,4 +12,6 @@ public class AlertaDTO {
     private String tipoAlerta; 
     @NotEmpty
     private String contactoNotificado; 
+    @NotEmpty
+    private Double valorDetectado; // Se jala del AppUser
 }

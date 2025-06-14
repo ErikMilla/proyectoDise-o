@@ -11,7 +11,6 @@ import com.appDP.aplicacionDiseno.model.SignosVitales;
 @Repository
 public interface SignosVitalesRepository extends JpaRepository<SignosVitales, Long> {
     SignosVitales findTopByUsuarioOrderByFechaRegistroDesc(AppUser usuario);
-    // Este método busca los signos vitales más recientes de un usuario específico
 
      List<SignosVitales> findAllByUsuarioOrderByFechaRegistroAsc(AppUser usuario);
 }
