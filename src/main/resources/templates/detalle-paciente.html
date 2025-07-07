@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Paciente</title>
+    <link rel="stylesheet" th:href="@{/styleLogin.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        .detalle-card {
+            border-radius: 24px;
+            box-shadow: 0 2px 16px #e0e7ef;
+            background: #fff;
+            padding: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 90px;
+            max-width: 600px;
+        }
+        .detalle-label { font-weight: bold; color: #399fad; }
+        .alerta-mensaje { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .alerta-ok { color: #198754; }
+        .alerta-warn { color: #ffc107; }
+        .alerta-error { color: #dc3545; }
+    </style>
+</head>
+<body>
+    <div class="container" style="padding-bottom: 80px;">
+        <div class="detalle-card mx-auto">
+            <h2 class="mb-4 text-center">Datos del Paciente</h2>
+            <div class="mb-3"><span class="detalle-label">Nombre:</span> <span th:text="${paciente.nombre}"></span></div>
+            <div class="mb-3"><span class="detalle-label">Apellidos:</span> <span th:text="${paciente.apellidos}"></span></div>
+            <div class="mb-3"><span class="detalle-label">Correo electrónico:</span> <span th:text="${paciente.email}"></span></div>
+            <div class="mb-3"><span class="detalle-label">Teléfono:</span> <span th:text="${paciente.telefono}"></span></div>
+            <div class="mb-3"><span class="detalle-label">Dirección:</span> <span th:text="${paciente.direccion}"></span></div>
+            <div class="mb-3"><span class="detalle-label">Contacto de emergencia:</span> <span th:text="${paciente.contactoEmergencia}"></span></div>
+            <div class="mb-3"><span class="detalle-label">Fecha de creación:</span> <span th:text="${#temporals.format(paciente.fechaCreacion, 'dd/MM/yyyy HH:mm')}"></span></div>
+
+            <hr>
+            <h5 class="mb-3">Últimos Datos Registrados</h5>
+            <div th:if="${ultimaMedida != null}">
+                <div>Peso: <b th:text="${ultimaMedida.peso}"></b> kg</div>
+                <div>Estatura: <b th:text="${ultimaMedida.estatura}"></b> cm</div>
+            </div>
+            <div th:if="${ultimosSignos != null}">
+                <div>Glucosa: <b th:text="${ultimosSignos.glucosa}"></b> mg/dL</div>
+                <div>Frecuencia cardíaca: <b th:text="${ultimosSignos.frecuenciaCardiaca}"></b> bpm</div>
+            </div>
+            <div th:if="${ultimaMedida == null && ultimosSignos == null}">
+                <span class="text-muted">No hay datos registrados.</span>
+            </div>
+
+            <hr>
+            <h5 class="mb-3">Historial de Mediciones</h5>
+            <div th:if="${historialMedidas != null && #lists.size(historialMedidas) > 0}">
+                <div class="mb-2"><b>Peso:</b>
+                    <span th:each="m : ${historialMedidas}" th:text="${m.peso} + 'kg '"></span>
+                </div>
+                <div class="mb-2"><b>Estatura:</b>
+                    <span th:each="m : ${historialMedidas}" th:text="${m.estatura} + 'cm '"></span>
+                </div>
+            </div>
+            <div th:if="${historialSignos != null && #lists.size(historialSignos) > 0}">
+                <div class="mb-2"><b>Glucosa:</b>
+                    <span th:each="s : ${historialSignos}" th:text="${s.glucosa} + 'mg/dL '"></span>
+                </div>
+                <div class="mb-2"><b>Frecuencia cardíaca:</b>
+                    <span th:each="s : ${historialSignos}" th:text="${s.frecuenciaCardiaca} + 'bpm '"></span>
+                </div>
+            </div>
+            <div th:if="${#lists.isEmpty(historialMedidas) && #lists.isEmpty(historialSignos)}">
+                <span class="text-muted">No hay historial de mediciones.</span>
+            </div>
+
+            <hr>
+            <h5 class="mb-3">Alertas recientes</h5>
+            <div th:if="${alertas != null && #lists.size(alertas) > 0}">
+                <div th:each="alerta : ${alertas}" class="alerta-mensaje">
+                    <span th:text="${alerta.tipoAlerta}"></span> -
+                    <span th:text="${#temporals.format(alerta.fechaHora, 'dd/MM/yyyy HH:mm')}"></span> -
+                    <span th:text="${alerta.valorDetectado}"></span>
+                </div>
+            </div>
+            <div th:if="${#lists.isEmpty(alertas)}">
+                <span class="text-muted">No hay alertas recientes.</span>
+            </div>
+
+            <hr>
+            <a href="/doctor/pacientes" class="btn btn-outline-secondary mt-3"><i class="bi bi-arrow-left"></i> Volver al panel</a>
+        </div>
+    </div>
+    <nav class="navbar-bottom">
+        <a href="/doctor/pacientes" class="active"><i class="bi bi-people"></i><span>Pacientes</span></a>
+        <a href="/logout"><i class="bi bi-box-arrow-right"></i><span>Salir</span></a>
+    </nav>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

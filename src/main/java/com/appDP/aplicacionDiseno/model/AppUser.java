@@ -32,4 +32,10 @@ public class AppUser {
 
     @Column(name = "fechaCreacion", columnDefinition = "DATETIME")
     private LocalDateTime fechaCreacion = LocalDateTime.now();
+    
+    @Enumerated(EnumType.STRING)
+    private Rol rol = Rol.PACIENTE; // Por defecto PACIENTE
+    
+    @Column(name = "numero_colegiatura")
+    private String numeroColegiatura; // Solo para doctores
 }
