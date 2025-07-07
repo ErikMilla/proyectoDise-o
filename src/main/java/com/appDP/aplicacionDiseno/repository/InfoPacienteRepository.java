@@ -6,9 +6,4 @@ import com.appDP.aplicacionDiseno.model.InfoPaciente;
 
 @Repository
 public interface InfoPacienteRepository extends JpaRepository <InfoPaciente, Long> {
-    // Aquí puedes agregar métodos personalizados si es necesario
-    // Por ejemplo, buscar por nombre o apellido
-    // List<InfoPaciente> findByNombre(String nombre);
-    // List<InfoPaciente> findByApellido(String apellido);
-
 }

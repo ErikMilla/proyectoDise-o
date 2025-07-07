@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MedidaCorporalRepository extends JpaRepository<MedidaCorporal, Long> {
     MedidaCorporal findTopByUsuarioOrderByFechaRegistroDesc(AppUser usuario);
-    // Este método busca la medida corporal más reciente de un usuario específico
     List<MedidaCorporal> findAllByUsuarioOrderByFechaRegistroAsc(AppUser usuario);
 
 }
