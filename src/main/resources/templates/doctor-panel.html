@@ -75,8 +75,9 @@
                         <td th:text="${paciente.direccion}"></td>
                         <td th:text="${paciente.contactoEmergencia}"></td>
                         <td>
-                            <a th:href="@{'/doctor/pacientes/' + ${paciente.id}}" class="main-btn btn-sm">
-                                <i class="bi bi-eye"></i> Ver detalles
+                            <a th:href="@{'/doctor/pacientes/' + ${paciente.id}}" class="btn-detalles">
+                                <i class="bi bi-eye"></i>
+                                <span>Ver detalles</span>
                             </a>
                         </td>
                     </tr>
