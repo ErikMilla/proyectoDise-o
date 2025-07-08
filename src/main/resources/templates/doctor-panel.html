@@ -19,6 +19,35 @@
         .table th, .table td { vertical-align: middle; }
         .main-btn { background: #399fad; color: #fff; border-radius: 14px; font-size: 1rem; padding: 0.5rem 1.2rem; border: none; }
         .main-btn:active, .main-btn:focus { background: #2e8c99; }
+        /* Navbar-bottom igual que en las páginas principales */
+        .navbar-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            background: #f7fafb;
+            border-top: 1px solid #e0e7ef;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 64px;
+            z-index: 1000;
+        }
+        .navbar-bottom a {
+            color: #399fad;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .navbar-bottom a.active,
+        .navbar-bottom a:focus {
+            color: #2e8c99;
+        }
+        .navbar-bottom i {
+            font-size: 1.5rem;
+        }
     </style>
 </head>
 <body>

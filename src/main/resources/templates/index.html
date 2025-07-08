@@ -148,6 +148,8 @@
     <!-- Barra de navegación -->
     <nav class="navbar-bottom">
         <a href="/" class="active"><i class="bi bi-house-door"></i><span>Inicio</span></a>
+        <a href="/notificaciones"><i class="bi bi-bell"></i><span>Notificaciones</span></a>
+        <a href="/ajustes"><i class="bi bi-gear"></i><span>Ajustes</span></a>
 
         <!-- Si no está autenticado -->
         <a th:if="${nombreUsuario == null}" href="/login"><i class="bi bi-box-arrow-in-right"></i><span>Iniciar Sesión</span></a>
@@ -157,8 +159,6 @@
         <a th:if="${nombreUsuario != null}" href="/medicion"><i class="bi bi-heart-pulse"></i><span>Salud</span></a>
         <a th:if="${nombreUsuario != null}" href="/alertas"><i class="bi bi-exclamation-triangle"></i><span>Alertas</span></a>
         <a th:if="${nombreUsuario != null}" href="/logout"><i class="bi bi-box-arrow-right"></i><span>Salir</span></a>
-
-        <a href="/ajustes"><i class="bi bi-gear"></i><span>Ajustes</span></a>
     </nav>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

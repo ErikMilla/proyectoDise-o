@@ -22,6 +22,35 @@
         .alerta-ok { color: #198754; }
         .alerta-warn { color: #ffc107; }
         .alerta-error { color: #dc3545; }
+        /* Navbar-bottom igual que en las páginas principales */
+        .navbar-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            background: #f7fafb;
+            border-top: 1px solid #e0e7ef;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 64px;
+            z-index: 1000;
+        }
+        .navbar-bottom a {
+            color: #399fad;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .navbar-bottom a.active,
+        .navbar-bottom a:focus {
+            color: #2e8c99;
+        }
+        .navbar-bottom i {
+            font-size: 1.5rem;
+        }
     </style>
 </head>
 <body>
@@ -84,6 +113,40 @@
             <div th:if="${#lists.isEmpty(alertas)}">
                 <span class="text-muted">No hay alertas recientes.</span>
             </div>
+
+            <hr>
+            <h5 class="mb-3">Comentarios médicos</h5>
+            <div th:if="${comentarios != null && #lists.size(comentarios) > 0}">
+                <div th:each="comentario : ${comentarios}" class="mb-2 p-2 border rounded bg-light">
+                    <div><b th:text="${comentario.doctor.nombre}"></b> <span class="text-muted" th:text="${#temporals.format(comentario.fechaComentario, 'dd/MM/yyyy HH:mm')}"></span></div>
+                    <div th:text="${comentario.texto}"></div>
+                </div>
+            </div>
+            <div th:if="${#lists.isEmpty(comentarios)}">
+                <span class="text-muted">No hay comentarios médicos aún.</span>
+            </div>
+            <form th:action="@{'/doctor/pacientes/' + ${paciente.id} + '/comentario'}" th:object="${nuevoComentario}" method="post" class="mt-3">
+                <div class="mb-2">
+                    <textarea class="form-control" th:field="*{texto}" placeholder="Agregar comentario médico..." required></textarea>
+                </div>
+                <button type="submit" class="main-btn">Agregar comentario</button>
+            </form>
+
+            <hr>
+            <h5 class="mb-3">Enviar SMS personalizado</h5>
+            <form th:action="@{'/doctor/pacientes/' + ${paciente.id} + '/sms'}" method="post" class="mb-3">
+                <div class="mb-3">
+                    <label class="form-label">Destinatario:</label>
+                    <select class="form-select" name="destinatario" required>
+                        <option value="paciente">Paciente (<span th:text="${paciente.telefono}"></span>)</option>
+                        <option value="emergencia">Contacto de emergencia (<span th:text="${paciente.contactoEmergencia}"></span>)</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control" name="mensaje" placeholder="Escribe el mensaje..." rows="3" required></textarea>
+                </div>
+                <button type="submit" class="main-btn w-100">Enviar SMS</button>
+            </form>
 
             <hr>
             <a href="/doctor/pacientes" class="btn btn-outline-secondary mt-3"><i class="bi bi-arrow-left"></i> Volver al panel</a>
